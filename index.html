@@ -3,343 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBoat - Vivez l'Exceptionnel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>MyBoat - L'Excellence Navale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --navy: #061A2E; /* Bleu Marine Chic */
-            --gold: #C5A059; /* Or Premium */
-            --cream: #F9F7F2; /* Blanc Cassé Chic pour contrastes */
+            --navy-dark: #020B14;
+            --navy: #061A2E;
+            --navy-light: #122C47;
+            --gold: #C5A059;
+            --gold-light: #E8D099;
+            --cream: #FDFBF7;
             --white: #FFFFFF;
-            --grey: #A0A0A0;
-            --text-on-cream: #4A4A4A;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--navy);
+            background-color: var(--navy-dark);
             color: var(--white);
             height: 100%;
-            overflow: hidden; /* Scroll contrôlé par slides-container */
+            overflow: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Container du diaporama */
+        /* Arrière-plan animé luxueux (imite l'eau et la lumière) */
+        .ambient-background {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 0%, var(--navy-light) 0%, var(--navy) 50%, var(--navy-dark) 100%);
+            z-index: -2;
+        }
+
+        /* Filigrane géant de la marque en arrière-plan */
+        .watermark {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120vw;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+            user-select: none;
+        }
+
+        /* En-tête permanent Chic */
+        .persistent-header {
+            position: fixed;
+            top: 30px;
+            left: 50px;
+            right: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .header-logo { height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .header-tagline { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Conteneur principal */
         .slides-container {
             height: 100vh;
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
         }
 
-        /* Structure de base d'une slide */
         .slide {
             height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-sizing: border-box;
-            overflow: hidden;
-            background-color: var(--navy);
-        }
-
-        /* Slides Claires (Chic Contrast) */
-        .slide-light {
-            background-color: var(--cream);
-            color: var(--navy);
-            border-top: 6px solid var(--navy);
-            justify-content: flex-start; /* Aligne en haut pour l'en-tête de logo */
-            padding-top: 80px;
-        }
-
-        .content {
             position: relative;
-            z-index: 10;
-            width: 90%;
-            max-width: 1200px;
-            text-align: center;
+            padding: 0 10%;
+            box-sizing: border-box;
         }
 
-        /* --- INTEGRATION ET AGRANDISSEMENT DE VOTRE LOGO --- */
-        .custom-logo {
-            width: 600px; /* Logo principal GIGANTESQUE (plus de 30% de plus) */
-            max-width: 95%;
-            margin-bottom: 20px;
-            filter: drop-shadow(0px 6px 15px rgba(0,0,0,0.5)); 
+        /* Effet Verre Dépoli (Glassmorphism) pour combler le vide élégamment */
+        .glass-panel {
+            background: rgba(253, 251, 247, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 2px;
+            padding: 60px;
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out forwards;
         }
+
+        /* Typographie Vendeuse et Luxueuse */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0; }
+        .title-massive { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; }
+        .title-section { font-size: 3.5rem; color: var(--gold-light); margin-bottom: 20px; text-align: center; }
+        .italic-gold { font-style: italic; color: var(--gold); }
         
-        /* Version sombre du logo pour les slides claires, GRANDIE de 60% */
-        .logo-light-bg {
-            filter: brightness(0.2); 
-            height: 60px; /* Logo d'en-tête agrandi de 35px à 60px */
-            width: auto;
+        .separator { width: 60px; height: 3px; background: var(--gold); margin: 30px auto; box-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
+        .separator-left { width: 60px; height: 3px; background: var(--gold); margin: 30px 0; }
+
+        /* Grilles et dispositions */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; margin-top: 40px; }
+        .icon-box i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .icon-box h4 { font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 15px; color: var(--white); text-transform: uppercase; }
+        .icon-box p { font-weight: 300; line-height: 1.7; color: #CCC; font-size: 0.95rem; }
+
+        /* Slide "Artisanat" asymétrique façon magazine de luxe */
+        .editorial-layout { display: flex; align-items: center; gap: 60px; }
+        .editorial-left { flex: 1; border-left: 4px solid var(--gold); padding-left: 40px; }
+        .editorial-right { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+        .feature-row { display: flex; align-items: flex-start; gap: 20px; }
+        .feature-icon { width: 50px; height: 50px; border: 1px solid var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--gold); font-size: 1.2rem; }
+        .feature-text h4 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--gold-light); }
+        .feature-text p { margin: 0; font-weight: 300; font-size: 0.9rem; color: #BBB; line-height: 1.6; }
+
+        /* Le Bouton Vendeur */
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, #C5A059 0%, #E8D099 50%, #C5A059 100%);
+            background-size: 200% auto;
+            color: var(--navy-dark);
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4);
+            transition: all 0.4s ease;
+            margin-top: 40px;
         }
+        .btn-gold:hover { background-position: right center; transform: translateY(-3px); box-shadow: 0 15px 40px rgba(197, 160, 89, 0.6); }
 
-        /* Typographie */
-        h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0; }
-        .italic { font-style: italic; color: var(--gold); font-weight: 400; }
-        .gold-line { width: 120px; height: 3px; background-color: var(--gold); margin: 30px auto; } /* Ligne plus visible */
-        .navy-line { width: 80px; height: 2px; background-color: var(--navy); margin: 30px auto; opacity: 0.3; }
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Navigation latérale chic */
+        .nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; z-index: 100; }
+        .dot { width: 8px; height: 8px; background: transparent; border: 1px solid var(--gold); border-radius: 50%; transition: 0.3s; }
+        .dot-active { background: var(--gold); box-shadow: 0 0 10px var(--gold); transform: scale(1.3); }
 
-        /* Couverture & Fin */
-        .s1-title { font-size: 70px; line-height: 1.1; font-weight: 400; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); }
-        .s1-footer { font-size: 14px; letter-spacing: 2px; margin-top: 50px; text-transform: uppercase; color: var(--grey); }
+        /* Main Logo Showcase */
+        .hero-logo { width: 500px; max-width: 80%; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); }
 
-        /* Manifeste */
-        .s2-quote { font-size: 48px; line-height: 1.3; margin-bottom: 50px; }
-        .cols-3 { display: flex; justify-content: space-between; gap: 40px; margin-top: 40px; }
-        .col { flex: 1; text-align: center; }
-        .col i { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
-        .col h4 { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 15px; }
-        .col p { font-size: 15px; font-weight: 300; line-height: 1.6; color: #E0E0E0; }
-
-        /* Contenu slides claires */
-        .cream-header { position: absolute; top: 40px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 15px; text-align: center;} /* En-tête centré */
-        .s3-title { font-size: 48px; font-weight: 700; color: var(--navy); margin-top: 40px; }
-        .circle-icon { width: 80px; height: 80px; background-color: var(--navy); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 30px auto; }
-        .circle-icon i { font-size: 32px; color: white; margin: 0; }
-        .cream-col h4 { color: var(--navy); }
-        .cream-col p { color: var(--text-on-cream); font-weight: 400; }
-        .cream-col p strong { color: var(--gold); font-weight: 600; display: block; margin-top: 5px;}
-        .divider-v { width: 1px; background-color: var(--navy); opacity: 0.1; }
-
-        /* Split Screen (Slide 4 - Avec GÉANT LOGO d'OR sur la gauche) */
-        .slide-split { flex-direction: row; background-color: var(--cream); border-top: none; }
-        .split-left { width: 45%; height: 100%; position: relative; overflow: hidden; background-color: var(--navy); display: flex; justify-content: center; align-items: center; }
-        .gold-border { position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background-color: var(--gold); z-index: 10; }
-        .split-right { width: 55%; height: 100%; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .split-right h2 { font-size: 46px; color: var(--navy); font-weight: 700; line-height: 1.1; }
-        .split-right .navy-line { margin: 30px 0; }
-        .list-item { display: flex; gap: 25px; margin-bottom: 30px; }
-        .list-icon { width: 50px; height: 50px; border: 1px solid var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
-        .list-icon i { color: var(--gold); font-size: 20px; }
-        .list-text h4 { font-size: 18px; color: var(--navy); margin: 0 0 5px 0; text-transform: uppercase; }
-        .list-text p { font-size: 15px; color: var(--text-on-cream); margin: 0; line-height: 1.5; }
-
-        /* Vision (Cartes transparentes) */
-        .cards-container { display: flex; justify-content: space-between; gap: 30px; margin-top: 40px; }
-        .card { flex: 1; border: 1px solid rgba(197, 160, 89, 0.3); background-color: rgba(6, 26, 46, 0.4); padding: 40px 20px; text-align: center; backdrop-filter: blur(5px); }
-        .card i { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
-        .card h4 { font-size: 18px; color: white; margin-bottom: 15px; }
-        .card p { font-size: 14px; color: #E0E0E0; line-height: 1.6; }
-        .s6-footer-quote { margin-top: 40px; font-size: 20px; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
-
-        /* CTA Chic */
-        .s7-text { font-size: 22px; font-weight: 300; line-height: 1.8; margin-top: 30px; color: #E0E0E0; }
-        .cta-box { border: 1px solid var(--gold); color: white; padding: 25px 50px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-top: 40px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(197, 160, 89, 0.4); background-color: var(--gold); } /* Bandeau Gold Entier */
-        .cta-box span { color: var(--navy); }
-
-        /* Navigation Dots */
-        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 15px; }
-        .dot { width: 10px; height: 10px; border: 1px solid var(--gold); border-radius: 50%; display: block; text-decoration: none; transition: 0.3s; }
-        .dot:hover, .dot-active { background-color: var(--gold); }
     </style>
 </head>
 <body>
 
+    <div class="ambient-background"></div>
+    <img src="logo-myboat.png.png" alt="Watermark" class="watermark">
+
+    <header class="persistent-header">
+        <img src="logo-myboat.png.png" alt="MyBoat" class="header-logo">
+        <div class="header-tagline">Salon des Entrepreneurs</div>
+    </header>
+
     <div class="nav-dots">
-        <a href="#s1" class="dot dot-active"></a>
-        <a href="#s2" class="dot"></a>
-        <a href="#s3" class="dot"></a>
-        <a href="#s4" class="dot"></a>
-        <a href="#s5" class="dot"></a>
-        <a href="#s6" class="dot"></a>
-        <a href="#s7" class="dot"></a>
+        <div class="dot dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
 
-    <div class="slides-container">
+    <div class="slides-container" id="container">
 
-        <section class="slide" id="s1">
-            <div class="content">
-                <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo">
-                <h1 class="s1-title">Vivez l'exceptionnel<br><span class="italic">à bord de MyBoat</span></h1>
-                <div class="gold-line"></div>
-                <div class="s1-footer">SALON DES ENTREPRENEURS — PITCH 5 MINUTES</div>
+        <section class="slide">
+            <img src="logo-myboat.png.png" alt="Logo MyBoat" class="hero-logo" style="animation: fadeInUp 0.8s ease-out;">
+            <div style="animation: fadeInUp 1.2s ease-out forwards; text-align: center;">
+                <h1 class="title-massive">Vivez <span class="italic-gold">l'exceptionnel</span></h1>
+                <p style="font-size: 1.2rem; font-weight: 300; letter-spacing: 5px; color: #CCC; text-transform: uppercase;">Constructeur Naval d'Excellence</p>
             </div>
         </section>
 
-        <section class="slide" id="s2">
-            <div class="content">
-                <h2 class="s2-quote">« On n’achète pas un bateau.<br><span class="italic">On achète une expérience. »</span></h2>
-                <div class="gold-line" style="opacity: 0.5;"></div>
-                <div class="cols-3">
-                    <div class="col">
+        <section class="slide">
+            <div class="glass-panel">
+                <h2 style="font-size: 3rem; text-align: center; line-height: 1.3;">« On n’achète pas un bateau.<br><span class="italic-gold">On achète une expérience. »</span></h2>
+                <div class="separator"></div>
+                <div class="grid-3">
+                    <div class="icon-box">
                         <i class="fa-regular fa-compass"></i>
-                        <h4>LIBERTÉ PURE</h4>
-                        <p>Le temps qui se suspend,<br>l’horizon qui s’ouvre à l'infini.</p>
+                        <h4>Liberté Pure</h4>
+                        <p>Le temps qui se suspend, l’horizon qui s’ouvre à l'infini. Le luxe de posséder son propre espace-temps.</p>
                     </div>
-                    <div class="col">
+                    <div class="icon-box">
                         <i class="fa-solid fa-water"></i>
-                        <h4>SENSATIONS VRAIES</h4>
-                        <p>Le clapotis des vagues,<br>la lumière dorée, le vent sur le visage.</p>
+                        <h4>Sensations Vraies</h4>
+                        <p>Le clapotis des vagues, la lumière dorée, le vent. Une reconnexion totale avec les éléments.</p>
                     </div>
-                    <div class="col">
+                    <div class="icon-box">
                         <i class="fa-regular fa-star"></i>
-                        <h4>AU-DELÀ DES SPECS</h4>
-                        <p>Un art de vivre sur l’eau,<br>bien plus qu'une simple fiche technique.</p>
+                        <h4>Au-delà des Specs</h4>
+                        <p>Nous ne vendons pas des moteurs ou du plastique. Nous concevons un véritable art de vivre sur l’eau.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="slide slide-light" id="s3">
-            <div class="cream-header">
-                <img src="logo-myboat.png.png" alt="MyBoat" class="logo-light-bg">
-            </div>
-            <div class="content">
-                <h2 class="s3-title">Notre mission :<br><span class="italic">Architectes de vos moments d'exception</span></h2>
-                <div class="navy-line"></div>
-                <div class="cols-3 cream-col">
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                        <h4>LE VAISSEAU &<br>LE SOUVENIR</h4>
-                        <p>Nous concevons la scène, mais c'est vous qui jouez la pièce.<br><strong>Nous construisons le cadre de vos mémoires.</strong></p>
+        <section class="slide">
+            <div class="glass-panel">
+                <h2 class="title-section">Architectes de <span class="italic-gold">vos moments</span></h2>
+                <div class="separator"></div>
+                <div class="grid-3">
+                    <div class="icon-box">
+                        <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">01</div>
+                        <h4 style="color: var(--gold-light);">Le Vaisseau & Le Souvenir</h4>
+                        <p>Nous concevons la scène, la sécurité et le confort, mais c'est vous qui jouez la pièce et créez vos mémoires.</p>
                     </div>
-                    <div class="divider-v"></div>
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-regular fa-heart"></i></div>
-                        <h4>UN DESIGN<br>RESSENTI</h4>
-                        <p>L'émotion prime sur la performance pure.<br><strong>Pas le plus rapide, mais le plus vibrant.</strong></p>
+                    <div class="icon-box">
+                        <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">02</div>
+                        <h4 style="color: var(--gold-light);">Un Design Ressenti</h4>
+                        <p>L'émotion prime sur la performance pure. Nous ne visons pas le plus rapide, mais le plus vibrant.</p>
                     </div>
-                    <div class="divider-v"></div>
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-regular fa-handshake"></i></div>
-                        <h4>CO-CRÉATION<br>ATTENTIVE</h4>
-                        <p>De l'écoute au premier départ.<br><strong>Chaque détail est adapté à votre définition de la liberté.</strong></p>
+                    <div class="icon-box">
+                        <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">03</div>
+                        <h4 style="color: var(--gold-light);">Co-Création Attentive</h4>
+                        <p>De l'écoute au premier départ. Chaque détail de votre MyBoat est adapté à votre définition stricte de la liberté.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="slide slide-split" id="s4">
-            <div class="split-left">
-                <img src="logo-myboat.png.png" alt="MyBoat" class="custom-logo" style="width: 80%; filter: opacity(0.2) brightness(1) drop-shadow(0px 0px 10px rgba(197, 160, 89, 0.4)); transform: rotate(-5deg);">
-                <div class="gold-border"></div>
-            </div>
-            <div class="split-right">
-                <div class="cream-header" style="position: relative; top: 0; left: 0; margin-bottom: 40px; justify-content: flex-start; text-align: left;">
-                    <img src="logo-myboat.png.png" alt="MyBoat" class="logo-light-bg">
+        <section class="slide">
+            <div class="glass-panel editorial-layout">
+                <div class="editorial-left">
+                    <h2 style="font-size: 3.5rem; line-height: 1.1;">Artisanat d'exception,<br><span class="italic-gold">Innovation effacée</span></h2>
+                    <p style="margin-top: 20px; font-weight: 300; font-size: 1.1rem; color: #DDD;">Chez MyBoat, la meilleure technologie est celle qui disparaît pour vous laisser face à l'horizon.</p>
                 </div>
-                <h2>Artisanat d'exception,<br><span class="italic">Innovation qui s'efface</span></h2>
-                <div class="navy-line" style="margin-left: 0;"></div>
-                
-                <div class="list-item">
-                    <div class="list-icon"><i class="fa-regular fa-gem"></i></div>
-                    <div class="list-text">
-                        <h4>FINITIONS AU MILLIMÈTRE</h4>
-                        <p>Chaque MyBoat est le fruit d'une passion partagée. Matériaux nobles et finitions pensées pour magnifier votre sensation de liberté.</p>
+                <div class="editorial-right">
+                    <div class="feature-row">
+                        <div class="feature-icon"><i class="fa-regular fa-gem"></i></div>
+                        <div class="feature-text">
+                            <h4>Finitions d'Orfèvre</h4>
+                            <p>Matériaux nobles, bois sourcés, et une finition pensée au millimètre pour magnifier votre bateau.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="list-item">
-                    <div class="list-icon"><i class="fa-solid fa-hands-bubbles"></i></div>
-                    <div class="list-text">
-                        <h4>ERGONOMIE FLUIDE</h4>
-                        <p>Nous concevons pour la fluidité, pas pour la complexité. Tout est à sa place, naturellement, pour une navigation instinctive.</p>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i class="fa-solid fa-hands-bubbles"></i></div>
+                        <div class="feature-text">
+                            <h4>Ergonomie Fluide</h4>
+                            <p>Nous concevons pour l'instinct, pas pour la complexité. La navigation devient naturelle et immédiate.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="list-item">
-                    <div class="list-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    <div class="list-text">
-                        <h4>TECHNOLOGIE INVISIBLE</h4>
-                        <p>La meilleure technologie est celle qui disparaît. Elle s'efface pour vous laisser profiter du lever du soleil, sans distraction.</p>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="feature-text">
+                            <h4>Technologie Invisible</h4>
+                            <p>Une domotique de pointe qui s'efface totalement pour vous laisser profiter du lever du soleil en silence.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="slide slide-light" id="s5">
-            <div class="cream-header">
-                <img src="logo-myboat.png.png" alt="MyBoat" class="logo-light-bg">
-            </div>
-            <div class="content">
-                <h2 class="s3-title">L'Esprit MyBoat :<br><span class="italic">Simplicité absolue. Plaisir partagé. Communauté.</span></h2>
-                <div class="navy-line"></div>
-                <div class="cols-3 cream-col">
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-solid fa-key"></i></div>
-                        <h4>SIMPLICITÉ D'USAGE</h4>
-                        <p>Prêt à partir en quelques instants.<br><strong>Libérez-vous des contraintes techniques.</strong></p>
+        <section class="slide">
+            <div class="glass-panel">
+                <h2 class="title-section">Réinventer l'horizon par <span class="italic-gold">l'expérience</span></h2>
+                <div class="separator"></div>
+                <div class="grid-3">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-users"></i>
+                        <h4 style="color: var(--gold-light);">La Communauté</h4>
+                        <p>Intégrer MyBoat, c'est rejoindre un cercle de passionnés exigeants, partageant le respect de la mer et l'amour du bel objet.</p>
                     </div>
-                    <div class="divider-v"></div>
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
-                        <h4>PLAISIR PARTAGÉ</h4>
-                        <p>Famille, amis, souvenirs qui rassemblent.<br><strong>Le bonheur ne vaut que s'il est partagé.</strong></p>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-champagne-glasses"></i>
+                        <h4 style="color: var(--gold-light);">Plaisir Partagé</h4>
+                        <p>Le bonheur ne vaut que s'il est partagé. Nos espaces sont pensés pour la convivialité, la famille et les souvenirs inoubliables.</p>
                     </div>
-                    <div class="divider-v"></div>
-                    <div class="col">
-                        <div class="circle-icon"><i class="fa-solid fa-users"></i></div>
-                        <h4>COMMUNAUTÉ MYBOAT</h4>
-                        <p>Respect de la mer, événements et rencontres.<br><strong>Plus qu'un bateau, un cercle de passionnés.</strong></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" id="s6">
-            <div class="content">
-                <div style="font-size: 14px; color: var(--gold); letter-spacing: 4px; font-weight: 700; text-transform: uppercase;">NOTRE HORIZON</div>
-                <h2 style="font-size: 52px; font-weight: 400; line-height: 1.2; margin-top: 15px;">Vision : réinventer le nautisme<br><span class="italic">par l'expérience</span></h2>
-                <div class="gold-line"></div>
-                
-                <div class="cards-container">
-                    <div class="card">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <h4>PROFONDEUR & SENS</h4>
-                        <p>Moins de surenchère technologique, plus de connexion.<br>Privilégier la qualité de l'instant vécu à la puissance brute.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fa-solid fa-binoculars"></i>
-                        <h4>CAP SUR L'HORIZON</h4>
-                        <p>Accompagner des passionnés exigeants.<br>Guider une quête personnelle d'exceptionnel.</p>
-                    </div>
-                    <div class="card">
+                    <div class="icon-box">
                         <i class="fa-solid fa-key"></i>
-                        <h4>PORTE OUVERTE</h4>
-                        <p>Chaque MyBoat est une clé.<br>Une ouverture sur votre liberté, votre temps, et votre espace retrouvés.</p>
+                        <h4 style="color: var(--gold-light);">Une Clé Vers Vous</h4>
+                        <p>Nous ne vendons pas un produit. Nous vous remettons la clé de votre propre espace-temps retrouvé.</p>
                     </div>
                 </div>
-                <div class="italic s6-footer-quote">« C'est mon bateau, c'est mon moment de liberté. »</div>
             </div>
         </section>
 
-        <section class="slide" id="s7">
-            <div class="content">
-                <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo" style="width: 300px;"> <h2 style="font-size: 64px; font-weight: 400; margin-top: 20px;">Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
-                <p class="s7-text">Ne regardez pas nos brochures.<br>Ne demandez pas nos prix.<br><strong style="color: #fff; font-weight: 500;">Venez nous raconter votre après-midi rêvée sur l'eau.</strong></p>
-                <div class="gold-line"></div>
-                
-                <div class="cta-box">
-                    STAND MYBOAT — <span>RENCONTRONS-NOUS</span>
-                </div>
-                
-                <div class="s1-footer" style="color: #A0A0A0; margin-top: 60px;">MYBOAT — VIVEZ L'EXCEPTIONNEL À BORD</div>
-            </div>
+        <section class="slide" style="text-align: center;">
+            <img src="logo-myboat.png.png" alt="MyBoat" style="width: 200px; margin-bottom: 30px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));">
+            <h2 style="font-size: 4.5rem; margin-bottom: 20px;">Parlez-nous de votre <span class="italic-gold">liberté idéale</span></h2>
+            <p style="font-size: 1.5rem; font-weight: 300; max-width: 800px; margin: 0 auto; color: #E0E0E0; line-height: 1.6;">
+                Oubliez les fiches techniques. Ne demandez pas nos prix tout de suite.<br>
+                <strong>Venez sur notre stand nous raconter votre après-midi rêvée sur l'eau.</strong>
+            </p>
+            <a href="#" class="btn-gold">Rencontrons-nous sur le stand</a>
         </section>
 
     </div>
 
     <script>
-        const container = document.querySelector('.slides-container');
+        const container = document.getElementById('container');
         const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.slide');
 
         container.addEventListener('scroll', () => {
-            const slideHeight = window.innerHeight;
-            const currentSlide = Math.round(container.scrollTop / slideHeight);
-            
-            dots.forEach((dot, index) => {
-                if (index === currentSlide) {
-                    dot.classList.add('dot-active');
-                } else {
-                    dot.classList.remove('dot-active');
-                }
-            });
+            let index = Math.round(container.scrollTop / window.innerHeight);
+            dots.forEach(dot => dot.classList.remove('dot-active'));
+            if(dots[index]) dots[index].classList.add('dot-active');
         });
     </script>
 </body>
