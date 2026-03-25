@@ -12,6 +12,9 @@
             --gold: #C5A059;
             --cream: #F9F7F2;
             --text-grey: #4A4A4A;
+            /* Images de secours sans filigrane */
+            --bg-ocean: url('https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&q=80&w=2000');
+            --bg-wave: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=1000');
         }
 
         body, html {
@@ -42,6 +45,9 @@
             align-items: center;
             box-sizing: border-box;
             overflow: hidden;
+            background-color: var(--navy);
+            background-size: cover;
+            background-position: center;
         }
 
         /* --- Vidéo en arrière-plan --- */
@@ -72,17 +78,8 @@
             text-align: center;
         }
 
-        /* --- Intégration de votre Logo --- */
-        .custom-logo {
-            width: 250px; /* Taille ajustable */
-            margin-bottom: 20px;
-            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.3)); /* Fait ressortir le logo sur fond sombre */
-        }
-        
-        .small-logo {
-            width: 80px;
-            margin-bottom: 10px;
-        }
+        .custom-logo { width: 250px; margin-bottom: 20px; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.3)); }
+        .small-logo { width: 80px; margin-bottom: 10px; }
 
         h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0; }
         .italic { font-style: italic; color: var(--gold); font-weight: 400; }
@@ -104,7 +101,7 @@
         .col p { font-size: 15px; font-weight: 300; line-height: 1.6; color: #E0E0E0; }
 
         /* Fonds crèmes */
-        .slide-cream { background-color: var(--cream); color: var(--navy); border-top: 6px solid var(--navy); justify-content: flex-start; padding-top: 80px; }
+        .slide-cream { background-image: none !important; background-color: var(--cream); color: var(--navy); border-top: 6px solid var(--navy); justify-content: flex-start; padding-top: 80px; }
         .cream-header { position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; }
         .s3-title { font-size: 48px; font-weight: 700; color: var(--navy); margin-top: 40px; }
         .circle-icon { width: 80px; height: 80px; background-color: var(--navy); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 30px auto; }
@@ -115,8 +112,8 @@
         .divider-v { width: 1px; background-color: var(--navy); opacity: 0.1; }
 
         /* Split Screen (Slide 4) */
-        .slide-split { flex-direction: row; background-color: var(--cream); border-top: none; }
-        .split-left { width: 45%; height: 100%; position: relative; overflow: hidden; background-color: var(--navy); }
+        .slide-split { flex-direction: row; background-image: none !important; background-color: var(--cream); border-top: none; }
+        .split-left { width: 45%; height: 100%; position: relative; overflow: hidden; background-color: var(--navy); background-image: var(--bg-wave); background-size: cover; background-position: right; }
         .gold-border { position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background-color: var(--gold); z-index: 10; }
         .split-right { width: 55%; height: 100%; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         .split-right h2 { font-size: 46px; color: var(--navy); font-weight: 700; line-height: 1.1; }
@@ -164,22 +161,22 @@
 
     <div class="slides-container">
 
-        <section class="slide" id="s1">
+        <section class="slide" id="s1" style="background-image: var(--bg-ocean);">
             <video autoplay loop muted playsinline class="bg-video">
-                <source src="Création_Vidéo_Pitch_MyBoat_Exceptionnel.mp4" type="video/mp4">
+                <source src="video-myboat.mp4" type="video/mp4">
             </video>
             <div class="overlay s1-overlay"></div>
             <div class="content">
-                <img src="Gemini_Generated_Image_7o7oxq7o7oxq7o7o.png" alt="Logo MyBoat" class="custom-logo">
+                <img src="logo-myboat.png" alt="Logo MyBoat" class="custom-logo" onerror="this.style.display='none'">
                 <h1 class="s1-title">Vivez l'exceptionnel<br><span class="italic">à bord de MyBoat</span></h1>
                 <div class="gold-line"></div>
                 <div class="s1-footer">SALON DES ENTREPRENEURS — PITCH 5 MINUTES</div>
             </div>
         </section>
 
-        <section class="slide" id="s2">
+        <section class="slide" id="s2" style="background-image: var(--bg-ocean);">
             <video autoplay loop muted playsinline class="bg-video">
-                <source src="Création_Vidéo_Pitch_MyBoat_Exceptionnel.mp4" type="video/mp4">
+                <source src="video-myboat.mp4" type="video/mp4">
             </video>
             <div class="overlay s2-overlay"></div>
             <div class="content">
@@ -207,7 +204,7 @@
 
         <section class="slide slide-cream" id="s3">
             <div class="cream-header">
-                <img src="Gemini_Generated_Image_7o7oxq7o7oxq7o7o.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);">
+                <img src="logo-myboat.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);" onerror="this.style.display='none'">
             </div>
             <div class="content" style="margin-top: 40px;">
                 <h2 class="s3-title">Notre mission :<br><span class="italic">Architectes de vos moments d'exception</span></h2>
@@ -238,13 +235,13 @@
         <section class="slide slide-split" id="s4">
             <div class="split-left">
                 <video autoplay loop muted playsinline class="bg-video" style="object-position: right;">
-                    <source src="Création_Vidéo_Pitch_MyBoat_Exceptionnel.mp4" type="video/mp4">
+                    <source src="video-myboat.mp4" type="video/mp4">
                 </video>
                 <div class="gold-border"></div>
             </div>
             <div class="split-right">
                 <div class="cream-header" style="position: relative; top: 0; left: 0; margin-bottom: 40px;">
-                    <img src="Gemini_Generated_Image_7o7oxq7o7oxq7o7o.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);">
+                    <img src="logo-myboat.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);" onerror="this.style.display='none'">
                 </div>
                 <h2>Artisanat d'exception,<br><span class="italic">Innovation qui s'efface</span></h2>
                 <div class="navy-line" style="margin-left: 0;"></div>
@@ -275,7 +272,7 @@
 
         <section class="slide slide-cream" id="s5">
             <div class="cream-header">
-                <img src="Gemini_Generated_Image_7o7oxq7o7oxq7o7o.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);">
+                <img src="logo-myboat.png" alt="MyBoat" style="height: 30px; filter: brightness(0.2);" onerror="this.style.display='none'">
             </div>
             <div class="content" style="margin-top: 40px;">
                 <h2 class="s3-title">L'Esprit MyBoat :<br><span class="italic">Simplicité absolue. Plaisir partagé. Communauté.</span></h2>
@@ -303,9 +300,9 @@
             <div style="position: absolute; bottom: 0; width: 100%; height: 10px; background-color: var(--navy);"></div>
         </section>
 
-        <section class="slide" id="s6">
+        <section class="slide" id="s6" style="background-image: var(--bg-ocean);">
             <video autoplay loop muted playsinline class="bg-video">
-                <source src="Création_Vidéo_Pitch_MyBoat_Exceptionnel.mp4" type="video/mp4">
+                <source src="video-myboat.mp4" type="video/mp4">
             </video>
             <div class="overlay s6-overlay"></div>
             <div class="content" style="max-width: 1000px;">
@@ -334,13 +331,13 @@
             </div>
         </section>
 
-        <section class="slide" id="s7">
+        <section class="slide" id="s7" style="background-image: var(--bg-ocean);">
             <video autoplay loop muted playsinline class="bg-video">
-                <source src="Création_Vidéo_Pitch_MyBoat_Exceptionnel.mp4" type="video/mp4">
+                <source src="video-myboat.mp4" type="video/mp4">
             </video>
             <div class="overlay s7-overlay"></div>
             <div class="content">
-                <img src="Gemini_Generated_Image_7o7oxq7o7oxq7o7o.png" alt="Logo MyBoat" class="small-logo">
+                <img src="logo-myboat.png" alt="Logo MyBoat" class="small-logo" onerror="this.style.display='none'">
                 <h2 style="font-size: 64px; font-weight: 400; margin-top: 20px;">Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
                 <p class="s7-text">Ne regardez pas nos brochures.<br>Ne demandez pas nos prix.<br><strong style="color: #fff; font-weight: 500;">Venez nous raconter votre après-midi rêvée sur l'eau.</strong></p>
                 <div class="gold-line" style="box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);"></div>
