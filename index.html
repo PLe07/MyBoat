@@ -4,189 +4,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBoat - Vivez l'Exceptionnel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --navy: #061A2E;
             --gold: #C5A059;
-            --white: #F9F7F2;
-            --overlay: rgba(6, 26, 46, 0.6);
+            --cream: #F9F7F2;
+            --text-grey: #4A4A4A;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-            background: var(--navy);
-            color: var(--white);
-            overflow-x: hidden;
+            background-color: var(--navy);
+            color: #fff;
+            height: 100%;
+            overflow: hidden; /* Empêche le scroll global, on scrolle dans le container */
         }
 
-        section {
+        /* Container du diaporama */
+        .slides-container {
             height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Structure de base d'une slide */
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 0 10%;
             box-sizing: border-box;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            overflow: hidden;
         }
 
-        /* Backgrounds */
-        .bg-img {
+        .bg-image {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://page.gensparksite.com/slides_images/243ec4d2306fbd8124cb4cde4385f1f2.webp');
             background-size: cover;
             background-position: center;
-            z-index: -2;
+            z-index: 1;
         }
 
         .overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--overlay);
-            z-index: -1;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2;
         }
 
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 20px;
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
         }
 
-        h1 { font-size: 4rem; }
-        h2 { font-size: 3rem; }
-        p { font-size: 1.2rem; line-height: 1.6; max-width: 800px; font-weight: 300; }
+        /* Typographie */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0; }
+        .italic { font-style: italic; color: var(--gold); font-weight: 400; }
+        .gold-line { width: 80px; height: 2px; background-color: var(--gold); margin: 30px auto; }
+        .navy-line { width: 80px; height: 2px; background-color: var(--navy); margin: 30px auto; opacity: 0.3; }
 
-        .italic { font-style: italic; color: var(--gold); }
-        .gold-text { color: var(--gold); font-weight: 600; }
-        
-        .btn {
-            margin-top: 30px;
-            padding: 15px 40px;
-            border: 2px solid var(--gold);
-            color: var(--white);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
+        /* --- SLIDE 1 & 7 : Couverture / Fin --- */
+        .s1-overlay { background-color: rgba(6, 26, 46, 0.45); }
+        .logo-icon { font-size: 50px; color: var(--gold); margin-bottom: 10px; }
+        .logo-text { font-weight: 700; font-size: 32px; letter-spacing: 4px; }
+        .logo-sub { font-weight: 300; font-size: 12px; letter-spacing: 4px; color: #E0E0E0; margin-bottom: 60px; }
+        .s1-title { font-size: 70px; line-height: 1.1; font-weight: 400; }
+        .s1-footer { font-size: 14px; letter-spacing: 2px; margin-top: 50px; text-transform: uppercase; }
 
-        .btn:hover {
-            background: var(--gold);
-            color: var(--navy);
-        }
+        /* --- SLIDE 2 : Manifeste --- */
+        .s2-overlay { background-color: rgba(6, 26, 46, 0.65); }
+        .s2-quote { font-size: 48px; line-height: 1.3; margin-bottom: 50px; }
+        .cols-3 { display: flex; justify-content: space-between; gap: 40px; margin-top: 40px; }
+        .col { flex: 1; text-align: center; }
+        .col i { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
+        .col h4 { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 15px; }
+        .col p { font-size: 15px; font-weight: 300; line-height: 1.6; color: #E0E0E0; }
 
-        /* Slide specific styles */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 50px;
-        }
+        /* --- SLIDE 3 & 5 : Fond crème --- */
+        .slide-cream { background-color: var(--cream); color: var(--navy); border-top: 6px solid var(--navy); justify-content: flex-start; padding-top: 80px; }
+        .cream-header { position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; }
+        .cream-header i { font-size: 24px; color: var(--navy); }
+        .cream-header span { font-weight: 700; font-size: 16px; letter-spacing: 2px; }
+        .s3-title { font-size: 48px; font-weight: 700; color: var(--navy); margin-top: 40px; }
+        .circle-icon { width: 80px; height: 80px; background-color: var(--navy); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 30px auto; }
+        .circle-icon i { font-size: 32px; color: white; margin: 0; }
+        .cream-col h4 { color: var(--navy); }
+        .cream-col p { color: var(--text-grey); font-weight: 400; }
+        .cream-col p strong { color: var(--gold); font-weight: 600; display: block; margin-top: 5px;}
+        .divider-v { width: 1px; background-color: var(--navy); opacity: 0.1; }
 
-        .feature-item i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
+        /* --- SLIDE 4 : Split Screen --- */
+        .slide-split { flex-direction: row; background-color: var(--cream); border-top: none; }
+        .split-left { width: 45%; height: 100%; position: relative; }
+        .split-left .bg-image { object-position: 20% center; }
+        .gold-border { position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background-color: var(--gold); z-index: 10; }
+        .split-right { width: 55%; height: 100%; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .split-right h2 { font-size: 46px; color: var(--navy); font-weight: 700; line-height: 1.1; }
+        .split-right .navy-line { margin: 30px 0; }
+        .list-item { display: flex; gap: 25px; margin-bottom: 30px; }
+        .list-icon { width: 50px; height: 50px; border: 1px solid var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .list-icon i { color: var(--gold); font-size: 20px; }
+        .list-text h4 { font-size: 18px; color: var(--navy); margin: 0 0 5px 0; text-transform: uppercase; }
+        .list-text p { font-size: 15px; color: var(--text-grey); margin: 0; line-height: 1.5; }
 
-        /* Navigation dots */
-        .nav-dots {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-        }
+        /* --- SLIDE 6 : Vision (Cartes transparentes) --- */
+        .s6-overlay { background-color: rgba(6, 26, 46, 0.7); }
+        .small-label { font-size: 14px; color: var(--gold); letter-spacing: 4px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+        .cards-container { display: flex; justify-content: space-between; gap: 30px; margin-top: 40px; }
+        .card { flex: 1; border: 1px solid rgba(197, 160, 89, 0.3); background-color: rgba(6, 26, 46, 0.4); padding: 40px 20px; text-align: center; }
+        .card i { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
+        .card h4 { font-size: 18px; color: white; margin-bottom: 15px; }
+        .card p { font-size: 14px; color: #E0E0E0; line-height: 1.6; }
+        .s6-footer-quote { margin-top: 40px; font-size: 20px; }
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            margin: 15px 0;
-            display: block;
-            cursor: pointer;
-        }
+        /* --- SLIDE 7 : Bouton CTA --- */
+        .s7-overlay { background-color: rgba(6, 26, 46, 0.6); }
+        .s7-text { font-size: 22px; font-weight: 300; line-height: 1.8; margin-top: 30px; color: #E0E0E0; }
+        .btn-outline { display: inline-block; border: 1px solid var(--gold); color: white; padding: 20px 40px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-top: 40px; text-decoration: none; }
+        .btn-outline span { color: var(--gold); }
 
-        .dot:hover { background: var(--gold); }
-
+        /* Nav Dots pour scroller facilement */
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 15px; }
+        .dot { width: 10px; height: 10px; border: 1px solid var(--gold); border-radius: 50%; display: block; text-decoration: none; transition: 0.3s; }
+        .dot:hover { background-color: var(--gold); }
     </style>
 </head>
 <body>
 
     <div class="nav-dots">
-        <a href="#slide1" class="dot"></a>
-        <a href="#slide2" class="dot"></a>
-        <a href="#slide3" class="dot"></a>
-        <a href="#slide4" class="dot"></a>
-        <a href="#slide5" class="dot"></a>
+        <a href="#s1" class="dot"></a>
+        <a href="#s2" class="dot"></a>
+        <a href="#s3" class="dot"></a>
+        <a href="#s4" class="dot"></a>
+        <a href="#s5" class="dot"></a>
+        <a href="#s6" class="dot"></a>
+        <a href="#s7" class="dot"></a>
     </div>
 
-    <section id="slide1">
-        <div class="bg-img" style="background-image: url('https://page.gensparksite.com/slides_images/243ec4d2306fbd8124cb4cde4385f1f2.webp');"></div>
-        <div class="overlay"></div>
-        <i class="fa-solid fa-sailboat" style="font-size: 3rem; color: var(--gold); margin-bottom: 20px;"></i>
-        <h1>Vivez l'exceptionnel <br><span class="italic">à bord de MyBoat</span></h1>
-        <p>SALON DES ENTREPRENEURS — PITCH 5 MINUTES</p>
-        <a href="#slide2" class="btn">Découvrir l'expérience</a>
-    </section>
+    <div class="slides-container">
 
-    <section id="slide2" style="background-color: var(--navy);">
-        <h2>« On n’achète pas un bateau. <br><span class="italic">On achète une expérience. »</span></h2>
-        <div class="features">
-            <div class="feature-item">
-                <i class="fa-regular fa-compass"></i>
-                <h3>Liberté Pure</h3>
-                <p>Le temps qui se suspend, l’horizon qui s’ouvre.</p>
+        <section class="slide" id="s1">
+            <div class="bg-image"></div>
+            <div class="overlay s1-overlay"></div>
+            <div class="content">
+                <i class="fa-solid fa-sailboat logo-icon"></i>
+                <div class="logo-text">MYBOAT</div>
+                <div class="logo-sub">CONSTRUCTEUR NAVAL</div>
+                <h1 class="s1-title">Vivez l'exceptionnel<br><span class="italic">à bord de MyBoat</span></h1>
+                <div class="gold-line"></div>
+                <div class="s1-footer">SALON DES ENTREPRENEURS — PITCH 5 MINUTES</div>
             </div>
-            <div class="feature-item">
-                <i class="fa-solid fa-water"></i>
-                <h3>Sensations</h3>
-                <p>Le clapotis, la lumière, le vent sur le visage.</p>
+        </section>
+
+        <section class="slide" id="s2">
+            <div class="bg-image" style="filter: brightness(0.8);"></div>
+            <div class="overlay s2-overlay"></div>
+            <div class="content">
+                <h2 class="s2-quote">« On n’achète pas un bateau.<br><span class="italic">On achète une expérience. »</span></h2>
+                <div class="gold-line" style="opacity: 0.5;"></div>
+                <div class="cols-3">
+                    <div class="col">
+                        <i class="fa-regular fa-compass"></i>
+                        <h4>LIBERTÉ PURE</h4>
+                        <p>Le temps qui se suspend,<br>l’horizon qui s’ouvre à l'infini.</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-water"></i>
+                        <h4>SENSATIONS VRAIES</h4>
+                        <p>Le clapotis des vagues,<br>la lumière dorée, le vent sur le visage.</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-regular fa-star"></i>
+                        <h4>AU-DELÀ DES SPECS</h4>
+                        <p>Un art de vivre sur l’eau,<br>bien plus qu'une simple fiche technique.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-item">
-                <i class="fa-regular fa-star"></i>
-                <h3>Art de Vivre</h3>
-                <p>Au-delà de la technique, l'émotion de l'instant.</p>
+        </section>
+
+        <section class="slide slide-cream" id="s3">
+            <div class="cream-header">
+                <i class="fa-solid fa-sailboat"></i>
+                <span>MYBOAT</span>
             </div>
-        </div>
-    </section>
+            <div class="content" style="margin-top: 40px;">
+                <h2 class="s3-title">Notre mission :<br><span class="italic">Architectes de vos moments d'exception</span></h2>
+                <div class="navy-line"></div>
+                <div class="cols-3 cream-col">
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                        <h4>LE VAISSEAU &<br>LE SOUVENIR</h4>
+                        <p>Nous concevons la scène, mais c'est vous qui jouez la pièce.<strong>Nous construisons le cadre de vos mémoires.</strong></p>
+                    </div>
+                    <div class="divider-v"></div>
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-regular fa-heart"></i></div>
+                        <h4>UN DESIGN<br>RESSENTI</h4>
+                        <p>L'émotion prime sur la performance pure.<strong>Pas le plus rapide, mais le plus vibrant.</strong></p>
+                    </div>
+                    <div class="divider-v"></div>
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-regular fa-handshake"></i></div>
+                        <h4>CO-CRÉATION<br>ATTENTIVE</h4>
+                        <p>De l'écoute au premier départ.<strong>Chaque détail est adapté à votre définition de la liberté.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 0; width: 100%; height: 10px; background-color: var(--navy);"></div>
+        </section>
 
-    <section id="slide3">
-        <div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=2000');"></div>
-        <div class="overlay" style="background: rgba(6, 26, 46, 0.8);"></div>
-        <h2>Artisanat & <span class="italic">Innovation Invisible</span></h2>
-        <p>Chaque ligne est pensée pour magnifier votre sensation de liberté. Notre technologie s'efface pour vous laisser seul face à la mer.</p>
-        <div class="features" style="max-width: 1000px;">
-            <p><span class="gold-text">FINITIONS :</span> Matériaux nobles et passion partagée.</p>
-            <p><span class="gold-text">FLUIDITÉ :</span> Une ergonomie pensée pour l'instinct.</p>
-            <p><span class="gold-text">SILENCE :</span> La technologie au service du lever de soleil.</p>
-        </div>
-    </section>
+        <section class="slide slide-split" id="s4">
+            <div class="split-left">
+                <div class="bg-image"></div>
+                <div class="gold-border"></div>
+            </div>
+            <div class="split-right">
+                <div class="cream-header" style="position: relative; top: 0; left: 0; margin-bottom: 40px;">
+                    <i class="fa-solid fa-sailboat"></i>
+                    <span>MYBOAT</span>
+                </div>
+                <h2>Artisanat d'exception,<br><span class="italic">Innovation qui s'efface</span></h2>
+                <div class="navy-line" style="margin-left: 0;"></div>
+                
+                <div class="list-item">
+                    <div class="list-icon"><i class="fa-regular fa-gem"></i></div>
+                    <div class="list-text">
+                        <h4>FINITIONS AU MILLIMÈTRE</h4>
+                        <p>Chaque MyBoat est le fruit d'une passion partagée. Matériaux nobles et finitions pensées pour magnifier votre sensation de liberté.</p>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-icon"><i class="fa-solid fa-hands-bubbles"></i></div>
+                    <div class="list-text">
+                        <h4>ERGONOMIE FLUIDE</h4>
+                        <p>Nous concevons pour la fluidité, pas pour la complexité. Tout est à sa place, naturellement, pour une navigation instinctive.</p>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="list-text">
+                        <h4>TECHNOLOGIE INVISIBLE</h4>
+                        <p>La meilleure technologie est celle qui disparaît. Elle s'efface pour vous laisser profiter du lever du soleil, sans distraction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="slide4" style="background-color: #081d33;">
-        <h2>Notre Vision</h2>
-        <p class="italic" style="font-size: 1.8rem;">"Réinventer le nautisme par la profondeur de l'expérience."</p>
-        <p>Nous ne cherchons pas la surenchère de puissance. Nous accompagnons ceux qui cherchent leur propre horizon.</p>
-    </section>
+        <section class="slide slide-cream" id="s5">
+            <div class="cream-header">
+                <i class="fa-solid fa-sailboat"></i>
+                <span>MYBOAT</span>
+            </div>
+            <div class="content" style="margin-top: 40px;">
+                <h2 class="s3-title">L'Esprit MyBoat :<br><span class="italic">Simplicité absolue. Plaisir partagé. Communauté.</span></h2>
+                <div class="navy-line"></div>
+                <div class="cols-3 cream-col">
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-solid fa-key"></i></div>
+                        <h4>SIMPLICITÉ D'USAGE</h4>
+                        <p>Prêt à partir en quelques instants.<strong>Libérez-vous des contraintes techniques.</strong></p>
+                    </div>
+                    <div class="divider-v"></div>
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                        <h4>PLAISIR PARTAGÉ</h4>
+                        <p>Famille, amis, souvenirs qui rassemblent.<strong>Le bonheur ne vaut que s'il est partagé.</strong></p>
+                    </div>
+                    <div class="divider-v"></div>
+                    <div class="col">
+                        <div class="circle-icon"><i class="fa-solid fa-users"></i></div>
+                        <h4>COMMUNAUTÉ MYBOAT</h4>
+                        <p>Respect de la mer, événements et rencontres.<strong>Plus qu'un bateau, un cercle de passionnés.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 0; width: 100%; height: 10px; background-color: var(--navy);"></div>
+        </section>
 
-    <section id="slide5">
-        <div class="bg-img" style="background-image: url('https://page.gensparksite.com/slides_images/243ec4d2306fbd8124cb4cde4385f1f2.webp');"></div>
-        <div class="overlay" style="background: rgba(6, 26, 46, 0.85);"></div>
-        <h2>Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
-        <p>Ne regardez pas nos brochures. Venez nous raconter votre après-midi de rêve sur l'eau.</p>
-        <div style="margin-top: 40px; padding: 20px; border: 1px solid var(--gold);">
-            <p class="gold-text" style="letter-spacing: 3px; margin: 0;">STAND MYBOAT — RENCONTRONS-NOUS</p>
-        </div>
-        <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.6; letter-spacing: 2px;">MYBOAT — VIVEZ L'EXCEPTIONNEL À BORD</p>
-    </section>
+        <section class="slide" id="s6">
+            <div class="bg-image"></div>
+            <div class="overlay s6-overlay"></div>
+            <div class="content" style="max-width: 1000px;">
+                <div class="small-label">NOTRE HORIZON</div>
+                <h2 style="font-size: 52px; font-weight: 400; line-height: 1.2;">Vision : réinventer le nautisme<br><span class="italic">par l'expérience</span></h2>
+                <div class="gold-line"></div>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h4>PROFONDEUR & SENS</h4>
+                        <p>Moins de surenchère technologique, plus de connexion.<br>Nous privilégions la qualité de l'instant vécu à la course à la puissance.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-binoculars"></i>
+                        <h4>CAP SUR L'HORIZON</h4>
+                        <p>Accompagner des passionnés exigeants.<br>Nous ne vendons pas un produit, nous guidons une quête personnelle d'exceptionnel.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-key"></i>
+                        <h4>PORTE OUVERTE</h4>
+                        <p>Chaque MyBoat est une clé.<br>Une ouverture sur votre liberté, votre temps, et votre espace retrouvés.</p>
+                    </div>
+                </div>
+                <div class="italic s6-footer-quote">« C'est mon bateau, c'est mon moment de liberté. »</div>
+            </div>
+        </section>
 
+        <section class="slide" id="s7">
+            <div class="bg-image"></div>
+            <div class="overlay s7-overlay"></div>
+            <div class="content">
+                <i class="fa-solid fa-sailboat logo-icon"></i>
+                <h2 style="font-size: 64px; font-weight: 400; margin-top: 20px;">Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
+                <p class="s7-text">Ne regardez pas nos brochures.<br>Ne demandez pas nos prix.<br><strong style="color: #fff; font-weight: 500;">Venez nous raconter votre après-midi rêvée sur l'eau.</strong></p>
+                <div class="gold-line" style="box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);"></div>
+                
+                <a href="#" class="btn-outline">
+                    STAND MYBOAT — <span>RENCONTRONS-NOUS</span>
+                </a>
+                
+                <div class="s1-footer" style="color: #A0A0A0; margin-top: 60px;">MYBOAT — VIVEZ L'EXCEPTIONNEL À BORD</div>
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
