@@ -54,6 +54,8 @@
             background-color: var(--cream);
             color: var(--navy);
             border-top: 6px solid var(--navy);
+            justify-content: flex-start; /* Aligne en haut pour l'en-tête de logo */
+            padding-top: 80px;
         }
 
         .content {
@@ -64,25 +66,25 @@
             text-align: center;
         }
 
-        /* --- INTEGRATION DE VOTRE LOGO (Nom exact) --- */
+        /* --- INTEGRATION ET AGRANDISSEMENT DE VOTRE LOGO --- */
         .custom-logo {
-            width: 450px; /* Logo en grand au centre */
-            max-width: 90%;
+            width: 600px; /* Logo principal GIGANTESQUE (plus de 30% de plus) */
+            max-width: 95%;
             margin-bottom: 20px;
-            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5)); 
+            filter: drop-shadow(0px 6px 15px rgba(0,0,0,0.5)); 
         }
         
-        /* Version sombre du logo pour les slides claires */
+        /* Version sombre du logo pour les slides claires, GRANDIE de 60% */
         .logo-light-bg {
             filter: brightness(0.2); 
-            height: 35px;
+            height: 60px; /* Logo d'en-tête agrandi de 35px à 60px */
             width: auto;
         }
 
         /* Typographie */
         h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0; }
         .italic { font-style: italic; color: var(--gold); font-weight: 400; }
-        .gold-line { width: 80px; height: 2px; background-color: var(--gold); margin: 30px auto; }
+        .gold-line { width: 120px; height: 3px; background-color: var(--gold); margin: 30px auto; } /* Ligne plus visible */
         .navy-line { width: 80px; height: 2px; background-color: var(--navy); margin: 30px auto; opacity: 0.3; }
 
         /* Couverture & Fin */
@@ -98,7 +100,7 @@
         .col p { font-size: 15px; font-weight: 300; line-height: 1.6; color: #E0E0E0; }
 
         /* Contenu slides claires */
-        .cream-header { position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; }
+        .cream-header { position: absolute; top: 40px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 15px; text-align: center;} /* En-tête centré */
         .s3-title { font-size: 48px; font-weight: 700; color: var(--navy); margin-top: 40px; }
         .circle-icon { width: 80px; height: 80px; background-color: var(--navy); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 30px auto; }
         .circle-icon i { font-size: 32px; color: white; margin: 0; }
@@ -107,9 +109,9 @@
         .cream-col p strong { color: var(--gold); font-weight: 600; display: block; margin-top: 5px;}
         .divider-v { width: 1px; background-color: var(--navy); opacity: 0.1; }
 
-        /* Split Screen (Slide 4 - Fidèle à vos captures, mais épurée) */
+        /* Split Screen (Slide 4 - Avec GÉANT LOGO d'OR sur la gauche) */
         .slide-split { flex-direction: row; background-color: var(--cream); border-top: none; }
-        .split-left { width: 45%; height: 100%; position: relative; overflow: hidden; background-color: var(--navy); }
+        .split-left { width: 45%; height: 100%; position: relative; overflow: hidden; background-color: var(--navy); display: flex; justify-content: center; align-items: center; }
         .gold-border { position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background-color: var(--gold); z-index: 10; }
         .split-right { width: 55%; height: 100%; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         .split-right h2 { font-size: 46px; color: var(--navy); font-weight: 700; line-height: 1.1; }
@@ -130,8 +132,8 @@
 
         /* CTA Chic */
         .s7-text { font-size: 22px; font-weight: 300; line-height: 1.8; margin-top: 30px; color: #E0E0E0; }
-        .cta-box { border: 1px solid var(--gold); color: white; padding: 20px 40px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-top: 40px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); box-shadow: 0 0 10px rgba(197, 160, 89, 0.3); }
-        .cta-box span { color: var(--gold); }
+        .cta-box { border: 1px solid var(--gold); color: white; padding: 25px 50px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-top: 40px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(197, 160, 89, 0.4); background-color: var(--gold); } /* Bandeau Gold Entier */
+        .cta-box span { color: var(--navy); }
 
         /* Navigation Dots */
         .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 15px; }
@@ -217,10 +219,11 @@
 
         <section class="slide slide-split" id="s4">
             <div class="split-left">
+                <img src="logo-myboat.png.png" alt="MyBoat" class="custom-logo" style="width: 80%; filter: opacity(0.2) brightness(1) drop-shadow(0px 0px 10px rgba(197, 160, 89, 0.4)); transform: rotate(-5deg);">
                 <div class="gold-border"></div>
             </div>
             <div class="split-right">
-                <div class="cream-header" style="position: relative; top: 0; left: 0; margin-bottom: 40px;">
+                <div class="cream-header" style="position: relative; top: 0; left: 0; margin-bottom: 40px; justify-content: flex-start; text-align: left;">
                     <img src="logo-myboat.png.png" alt="MyBoat" class="logo-light-bg">
                 </div>
                 <h2>Artisanat d'exception,<br><span class="italic">Innovation qui s'efface</span></h2>
@@ -308,8 +311,7 @@
 
         <section class="slide" id="s7">
             <div class="content">
-                <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo" style="width: 250px;">
-                <h2 style="font-size: 64px; font-weight: 400; margin-top: 20px;">Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
+                <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo" style="width: 300px;"> <h2 style="font-size: 64px; font-weight: 400; margin-top: 20px;">Parlez-nous de votre <span class="italic">liberté idéale</span></h2>
                 <p class="s7-text">Ne regardez pas nos brochures.<br>Ne demandez pas nos prix.<br><strong style="color: #fff; font-weight: 500;">Venez nous raconter votre après-midi rêvée sur l'eau.</strong></p>
                 <div class="gold-line"></div>
                 
