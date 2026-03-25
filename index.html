@@ -12,6 +12,9 @@
             --gold: #C5A059;
             --cream: #F9F7F2;
             --text-grey: #4A4A4A;
+            /* Images SANS filigrane (Unsplash) */
+            --bg-ocean: url('https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&q=80&w=2000');
+            --bg-wave: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=1000');
         }
 
         body, html {
@@ -21,10 +24,9 @@
             background-color: var(--navy);
             color: #fff;
             height: 100%;
-            overflow: hidden; /* Empêche le scroll global, on scrolle dans le container */
+            overflow: hidden; 
         }
 
-        /* Container du diaporama */
         .slides-container {
             height: 100vh;
             overflow-y: scroll;
@@ -32,7 +34,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Structure de base d'une slide */
         .slide {
             height: 100vh;
             width: 100vw;
@@ -49,7 +50,7 @@
         .bg-image {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://page.gensparksite.com/slides_images/243ec4d2306fbd8124cb4cde4385f1f2.webp');
+            background-image: var(--bg-ocean);
             background-size: cover;
             background-position: center;
             z-index: 1;
@@ -69,13 +70,12 @@
             text-align: center;
         }
 
-        /* Typographie */
         h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0; }
         .italic { font-style: italic; color: var(--gold); font-weight: 400; }
         .gold-line { width: 80px; height: 2px; background-color: var(--gold); margin: 30px auto; }
         .navy-line { width: 80px; height: 2px; background-color: var(--navy); margin: 30px auto; opacity: 0.3; }
 
-        /* --- SLIDE 1 & 7 : Couverture / Fin --- */
+        /* Couverture & Fin */
         .s1-overlay { background-color: rgba(6, 26, 46, 0.45); }
         .logo-icon { font-size: 50px; color: var(--gold); margin-bottom: 10px; }
         .logo-text { font-weight: 700; font-size: 32px; letter-spacing: 4px; }
@@ -83,7 +83,7 @@
         .s1-title { font-size: 70px; line-height: 1.1; font-weight: 400; }
         .s1-footer { font-size: 14px; letter-spacing: 2px; margin-top: 50px; text-transform: uppercase; }
 
-        /* --- SLIDE 2 : Manifeste --- */
+        /* Manifeste */
         .s2-overlay { background-color: rgba(6, 26, 46, 0.65); }
         .s2-quote { font-size: 48px; line-height: 1.3; margin-bottom: 50px; }
         .cols-3 { display: flex; justify-content: space-between; gap: 40px; margin-top: 40px; }
@@ -92,7 +92,7 @@
         .col h4 { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 15px; }
         .col p { font-size: 15px; font-weight: 300; line-height: 1.6; color: #E0E0E0; }
 
-        /* --- SLIDE 3 & 5 : Fond crème --- */
+        /* Fonds crèmes */
         .slide-cream { background-color: var(--cream); color: var(--navy); border-top: 6px solid var(--navy); justify-content: flex-start; padding-top: 80px; }
         .cream-header { position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; }
         .cream-header i { font-size: 24px; color: var(--navy); }
@@ -105,10 +105,10 @@
         .cream-col p strong { color: var(--gold); font-weight: 600; display: block; margin-top: 5px;}
         .divider-v { width: 1px; background-color: var(--navy); opacity: 0.1; }
 
-        /* --- SLIDE 4 : Split Screen --- */
+        /* Split Screen (Slide 4) */
         .slide-split { flex-direction: row; background-color: var(--cream); border-top: none; }
         .split-left { width: 45%; height: 100%; position: relative; }
-        .split-left .bg-image { object-position: 20% center; }
+        .split-left .bg-image { background-image: var(--bg-wave); object-position: right center; }
         .gold-border { position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background-color: var(--gold); z-index: 10; }
         .split-right { width: 55%; height: 100%; padding: 80px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         .split-right h2 { font-size: 46px; color: var(--navy); font-weight: 700; line-height: 1.1; }
@@ -119,7 +119,7 @@
         .list-text h4 { font-size: 18px; color: var(--navy); margin: 0 0 5px 0; text-transform: uppercase; }
         .list-text p { font-size: 15px; color: var(--text-grey); margin: 0; line-height: 1.5; }
 
-        /* --- SLIDE 6 : Vision (Cartes transparentes) --- */
+        /* Vision */
         .s6-overlay { background-color: rgba(6, 26, 46, 0.7); }
         .small-label { font-size: 14px; color: var(--gold); letter-spacing: 4px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
         .cards-container { display: flex; justify-content: space-between; gap: 30px; margin-top: 40px; }
@@ -129,13 +129,12 @@
         .card p { font-size: 14px; color: #E0E0E0; line-height: 1.6; }
         .s6-footer-quote { margin-top: 40px; font-size: 20px; }
 
-        /* --- SLIDE 7 : Bouton CTA --- */
+        /* CTA */
         .s7-overlay { background-color: rgba(6, 26, 46, 0.6); }
         .s7-text { font-size: 22px; font-weight: 300; line-height: 1.8; margin-top: 30px; color: #E0E0E0; }
         .btn-outline { display: inline-block; border: 1px solid var(--gold); color: white; padding: 20px 40px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-top: 40px; text-decoration: none; }
         .btn-outline span { color: var(--gold); }
 
-        /* Nav Dots pour scroller facilement */
         .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 15px; }
         .dot { width: 10px; height: 10px; border: 1px solid var(--gold); border-radius: 50%; display: block; text-decoration: none; transition: 0.3s; }
         .dot:hover { background-color: var(--gold); }
@@ -206,19 +205,19 @@
                     <div class="col">
                         <div class="circle-icon"><i class="fa-solid fa-compass-drafting"></i></div>
                         <h4>LE VAISSEAU &<br>LE SOUVENIR</h4>
-                        <p>Nous concevons la scène, mais c'est vous qui jouez la pièce.<strong>Nous construisons le cadre de vos mémoires.</strong></p>
+                        <p>Nous concevons la scène, mais c'est vous qui jouez la pièce.<br><strong>Nous construisons le cadre de vos mémoires.</strong></p>
                     </div>
                     <div class="divider-v"></div>
                     <div class="col">
                         <div class="circle-icon"><i class="fa-regular fa-heart"></i></div>
                         <h4>UN DESIGN<br>RESSENTI</h4>
-                        <p>L'émotion prime sur la performance pure.<strong>Pas le plus rapide, mais le plus vibrant.</strong></p>
+                        <p>L'émotion prime sur la performance pure.<br><strong>Pas le plus rapide, mais le plus vibrant.</strong></p>
                     </div>
                     <div class="divider-v"></div>
                     <div class="col">
                         <div class="circle-icon"><i class="fa-regular fa-handshake"></i></div>
                         <h4>CO-CRÉATION<br>ATTENTIVE</h4>
-                        <p>De l'écoute au premier départ.<strong>Chaque détail est adapté à votre définition de la liberté.</strong></p>
+                        <p>De l'écoute au premier départ.<br><strong>Chaque détail est adapté à votre définition de la liberté.</strong></p>
                     </div>
                 </div>
             </div>
@@ -274,19 +273,19 @@
                     <div class="col">
                         <div class="circle-icon"><i class="fa-solid fa-key"></i></div>
                         <h4>SIMPLICITÉ D'USAGE</h4>
-                        <p>Prêt à partir en quelques instants.<strong>Libérez-vous des contraintes techniques.</strong></p>
+                        <p>Prêt à partir en quelques instants.<br><strong>Libérez-vous des contraintes techniques.</strong></p>
                     </div>
                     <div class="divider-v"></div>
                     <div class="col">
                         <div class="circle-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
                         <h4>PLAISIR PARTAGÉ</h4>
-                        <p>Famille, amis, souvenirs qui rassemblent.<strong>Le bonheur ne vaut que s'il est partagé.</strong></p>
+                        <p>Famille, amis, souvenirs qui rassemblent.<br><strong>Le bonheur ne vaut que s'il est partagé.</strong></p>
                     </div>
                     <div class="divider-v"></div>
                     <div class="col">
                         <div class="circle-icon"><i class="fa-solid fa-users"></i></div>
                         <h4>COMMUNAUTÉ MYBOAT</h4>
-                        <p>Respect de la mer, événements et rencontres.<strong>Plus qu'un bateau, un cercle de passionnés.</strong></p>
+                        <p>Respect de la mer, événements et rencontres.<br><strong>Plus qu'un bateau, un cercle de passionnés.</strong></p>
                     </div>
                 </div>
             </div>
