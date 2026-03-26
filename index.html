@@ -28,7 +28,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Arrière-plan animé luxueux (imite l'eau et la lumière) */
+        /* Arrière-plan animé luxueux */
         .ambient-background {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -85,7 +85,7 @@
             box-sizing: border-box;
         }
 
-        /* Effet Verre Dépoli (Glassmorphism) pour combler le vide élégamment */
+        /* Effet Verre Dépoli (Glassmorphism) */
         .glass-panel {
             background: rgba(253, 251, 247, 0.03);
             backdrop-filter: blur(12px);
@@ -99,7 +99,7 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        /* Typographie Vendeuse et Luxueuse */
+        /* Typographie Vendeuse */
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0; }
         .title-massive { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; }
         .title-section { font-size: 3.5rem; color: var(--gold-light); margin-bottom: 20px; text-align: center; }
@@ -114,7 +114,7 @@
         .icon-box h4 { font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 15px; color: var(--white); text-transform: uppercase; }
         .icon-box p { font-weight: 300; line-height: 1.7; color: #CCC; font-size: 0.95rem; }
 
-        /* Slide "Artisanat" asymétrique façon magazine de luxe */
+        /* Slide asymétrique */
         .editorial-layout { display: flex; align-items: center; gap: 60px; }
         .editorial-left { flex: 1; border-left: 4px solid var(--gold); padding-left: 40px; }
         .editorial-right { flex: 1; display: flex; flex-direction: column; gap: 30px; }
@@ -123,7 +123,7 @@
         .feature-text h4 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--gold-light); }
         .feature-text p { margin: 0; font-weight: 300; font-size: 0.9rem; color: #BBB; line-height: 1.6; }
 
-        /* Le Bouton Vendeur */
+        /* Bouton Vendeur */
         .btn-gold {
             display: inline-block;
             background: linear-gradient(135deg, #C5A059 0%, #E8D099 50%, #C5A059 100%);
@@ -146,14 +146,13 @@
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Navigation latérale chic */
+        /* Navigation latérale */
         .nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; z-index: 100; }
         .dot { width: 8px; height: 8px; background: transparent; border: 1px solid var(--gold); border-radius: 50%; transition: 0.3s; }
         .dot-active { background: var(--gold); box-shadow: 0 0 10px var(--gold); transform: scale(1.3); }
 
         /* Main Logo Showcase */
         .hero-logo { width: 500px; max-width: 80%; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); }
-
     </style>
 </head>
 <body>
@@ -182,23 +181,23 @@
 
         <section class="slide">
             <div class="glass-panel">
-                <h2 style="font-size: 3rem; text-align: center; line-height: 1.3;">« On n’achète pas un bateau.<br><span class="italic-gold">On achète une expérience. »</span></h2>
+                <h2 style="font-size: 3rem; text-align: center; line-height: 1.3;">« À quoi ressemble votre samedi matin <span class="italic-gold">idéal ?</span> »</h2>
                 <div class="separator"></div>
                 <div class="grid-3">
                     <div class="icon-box">
                         <i class="fa-regular fa-compass"></i>
-                        <h4>Liberté Pure</h4>
-                        <p>Le temps qui se suspend, l’horizon qui s’ouvre à l'infini. Le luxe de posséder son propre espace-temps.</p>
+                        <h4>6h00 du matin</h4>
+                        <p>La brume danse encore sur l'eau. C’est ce moment précis où vous montez à bord, vous larguez les amarres, et soudainement... le monde s'arrête.</p>
                     </div>
                     <div class="icon-box">
                         <i class="fa-solid fa-water"></i>
-                        <h4>Sensations Vraies</h4>
-                        <p>Le clapotis des vagues, la lumière dorée, le vent. Une reconnexion totale avec les éléments.</p>
+                        <h4>Liberté Absolue</h4>
+                        <p>Plus de mails, plus de notifications, plus de KPIs. Juste vous, l'horizon, et cette sensation physique, presque animale, de liberté.</p>
                     </div>
                     <div class="icon-box">
                         <i class="fa-regular fa-star"></i>
-                        <h4>Au-delà des Specs</h4>
-                        <p>Nous ne vendons pas des moteurs ou du plastique. Nous concevons un véritable art de vivre sur l’eau.</p>
+                        <h4>Le Soupir de Soulagement</h4>
+                        <p>Nous ne fabriquons pas de simples bateaux. Ce que nous créons, c'est ce soulagement quand la terre ferme devient une petite ligne floue.</p>
                     </div>
                 </div>
             </div>
@@ -206,23 +205,23 @@
 
         <section class="slide">
             <div class="glass-panel">
-                <h2 class="title-section">Architectes de <span class="italic-gold">vos moments</span></h2>
+                <h2 class="title-section">Un luxe qui ne crie pas, <span class="italic-gold">mais qui s'impose</span></h2>
                 <div class="separator"></div>
                 <div class="grid-3">
                     <div class="icon-box">
                         <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">01</div>
-                        <h4 style="color: var(--gold-light);">Le Vaisseau & Le Souvenir</h4>
-                        <p>Nous concevons la scène, la sécurité et le confort, mais c'est vous qui jouez la pièce et créez vos mémoires.</p>
+                        <h4 style="color: var(--gold-light);">L'Élégance Pure</h4>
+                        <p>Une journée où tout est fluide. Sans commandes complexes, sans mains couvertes de graisse. Le plaisir pur d'inviter vos proches.</p>
                     </div>
                     <div class="icon-box">
                         <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">02</div>
-                        <h4 style="color: var(--gold-light);">Un Design Ressenti</h4>
-                        <p>L'émotion prime sur la performance pure. Nous ne visons pas le plus rapide, mais le plus vibrant.</p>
+                        <h4 style="color: var(--gold-light);">La Crique Secrète</h4>
+                        <p>Naviguez jusqu'à ce sanctuaire que vous seul connaissez, dans un silence si profond que vous n'entendez que le clapotis de l'eau contre la coque.</p>
                     </div>
                     <div class="icon-box">
                         <div style="font-size: 3rem; color: var(--navy); text-shadow: -1px -1px 0 var(--gold), 1px -1px 0 var(--gold), -1px 1px 0 var(--gold), 1px 1px 0 var(--gold); margin-bottom: 10px;">03</div>
-                        <h4 style="color: var(--gold-light);">Co-Création Attentive</h4>
-                        <p>De l'écoute au premier départ. Chaque détail de votre MyBoat est adapté à votre définition stricte de la liberté.</p>
+                        <h4 style="color: var(--gold-light);">Un temps à vous</h4>
+                        <p>La technologie s'efface totalement pour laisser place à l'essentiel : le rire de vos enfants et le partage d'un verre au coucher du soleil.</p>
                     </div>
                 </div>
             </div>
@@ -231,29 +230,29 @@
         <section class="slide">
             <div class="glass-panel editorial-layout">
                 <div class="editorial-left">
-                    <h2 style="font-size: 3.5rem; line-height: 1.1;">Artisanat d'exception,<br><span class="italic-gold">Innovation effacée</span></h2>
-                    <p style="margin-top: 20px; font-weight: 300; font-size: 1.1rem; color: #DDD;">Chez MyBoat, la meilleure technologie est celle qui disparaît pour vous laisser face à l'horizon.</p>
+                    <h2 style="font-size: 3.5rem; line-height: 1.1;">Le refus des<br><span class="italic-gold">compromis</span></h2>
+                    <p style="margin-top: 20px; font-weight: 300; font-size: 1.1rem; color: #DDD;">Certains essaient de vendre la mer à prix cassés pour grignoter des parts de marché. Mais brade-t-on vraiment sa liberté et la sécurité de sa famille ?</p>
                 </div>
                 <div class="editorial-right">
                     <div class="feature-row">
-                        <div class="feature-icon"><i class="fa-regular fa-gem"></i></div>
+                        <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
                         <div class="feature-text">
-                            <h4>Finitions d'Orfèvre</h4>
-                            <p>Matériaux nobles, bois sourcés, et une finition pensée au millimètre pour magnifier votre bateau.</p>
+                            <h4>Leader du Marché</h4>
+                            <p>La réalité est cruelle pour eux. Depuis plusieurs trimestres consécutifs, MyBoat détient la plus grosse part de marché du secteur.</p>
                         </div>
                     </div>
                     <div class="feature-row">
-                        <div class="feature-icon"><i class="fa-solid fa-hands-bubbles"></i></div>
+                        <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
                         <div class="feature-text">
-                            <h4>Ergonomie Fluide</h4>
-                            <p>Nous concevons pour l'instinct, pas pour la complexité. La navigation devient naturelle et immédiate.</p>
+                            <h4>Le Choix des Décideurs</h4>
+                            <p>Nos clients sont des entrepreneurs, des gens qui savent faire la différence entre un simple coût et un véritable investissement.</p>
                         </div>
                     </div>
                     <div class="feature-row">
-                        <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="feature-icon"><i class="fa-solid fa-crown"></i></div>
                         <div class="feature-text">
-                            <h4>Technologie Invisible</h4>
-                            <p>Une domotique de pointe qui s'efface totalement pour vous laisser profiter du lever du soleil en silence.</p>
+                            <h4>L'Excellence avant le Prix</h4>
+                            <p>On ne gagne pas la confiance en étant le moins cher. On devient leader parce qu'on refuse les compromis que les autres acceptent.</p>
                         </div>
                     </div>
                 </div>
@@ -262,23 +261,23 @@
 
         <section class="slide">
             <div class="glass-panel">
-                <h2 class="title-section">Réinventer l'horizon par <span class="italic-gold">l'expérience</span></h2>
+                <h2 class="title-section">L'étalon-or de <span class="italic-gold">la navigation</span></h2>
                 <div class="separator"></div>
                 <div class="grid-3">
                     <div class="icon-box">
-                        <i class="fa-solid fa-users"></i>
-                        <h4 style="color: var(--gold-light);">La Communauté</h4>
-                        <p>Intégrer MyBoat, c'est rejoindre un cercle de passionnés exigeants, partageant le respect de la mer et l'amour du bel objet.</p>
+                        <i class="fa-solid fa-binoculars"></i>
+                        <h4 style="color: var(--gold-light);">Posséder l'horizon</h4>
+                        <p>Nous ne voulons pas que vous possédiez simplement un bateau. Nous voulons que vous possédiez l'horizon tout entier.</p>
                     </div>
                     <div class="icon-box">
-                        <i class="fa-solid fa-champagne-glasses"></i>
-                        <h4 style="color: var(--gold-light);">Plaisir Partagé</h4>
-                        <p>Le bonheur ne vaut que s'il est partagé. Nos espaces sont pensés pour la convivialité, la famille et les souvenirs inoubliables.</p>
+                        <i class="fa-solid fa-gem"></i>
+                        <h4 style="color: var(--gold-light);">Investir dans la perfection</h4>
+                        <p>Nous préférons investir dans la perfection absolue de votre expérience plutôt que dans des campagnes de soldes désespérées.</p>
                     </div>
                     <div class="icon-box">
-                        <i class="fa-solid fa-key"></i>
-                        <h4 style="color: var(--gold-light);">Une Clé Vers Vous</h4>
-                        <p>Nous ne vendons pas un produit. Nous vous remettons la clé de votre propre espace-temps retrouvé.</p>
+                        <i class="fa-solid fa-book-open"></i>
+                        <h4 style="color: var(--gold-light);">Une Histoire Extraordinaire</h4>
+                        <p>Ce qui compte, ce n'est pas le chèque signé. C'est l'histoire que vous allez raconter au port. Nous nous assurons qu'elle soit extraordinaire.</p>
                     </div>
                 </div>
             </div>
@@ -286,10 +285,11 @@
 
         <section class="slide" style="text-align: center;">
             <img src="logo-myboat.png.png" alt="MyBoat" style="width: 200px; margin-bottom: 30px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));">
-            <h2 style="font-size: 4.5rem; margin-bottom: 20px;">Parlez-nous de votre <span class="italic-gold">liberté idéale</span></h2>
+            <h2 style="font-size: 4.5rem; margin-bottom: 20px;">Comparons des <span class="italic-gold">émotions</span></h2>
             <p style="font-size: 1.5rem; font-weight: 300; max-width: 800px; margin: 0 auto; color: #E0E0E0; line-height: 1.6;">
-                Oubliez les fiches techniques. Ne demandez pas nos prix tout de suite.<br>
-                <strong>Venez sur notre stand nous raconter votre après-midi rêvée sur l'eau.</strong>
+                Aujourd'hui, je ne vais pas vous parler de puissance ou de logistique.<br>
+                Ne venez pas pour comparer des prix. Racontez-moi votre destination de rêve.<br>
+                <strong>Décrivez-moi ce moment de liberté, et faisons-en votre réalité.</strong>
             </p>
             <a href="#" class="btn-gold">Rencontrons-nous sur le stand</a>
         </section>
