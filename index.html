@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBoat - L'Excellence Navale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -86,10 +86,10 @@
             box-sizing: border-box;
         }
 
-        /* --- Style pour la nouvelle slide d'intro --- */
-        .slide-intro {
-            justify-content: center; /* Centre verticalement */
-            align-items: center; /* Centre horizontalement */
+        /* --- Style pour la nouvelle slide finale --- */
+        .slide-outro {
+            justify-content: center; 
+            align-items: center; 
         }
 
         /* Effet Verre Dépoli (Glassmorphism) */
@@ -164,16 +164,16 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* Style spécifique pour le logo sur la slide d'intro (GIGANTESQUE) */
-        .custom-logo-intro {
-            width: 80vw; /* Utilise 80% de la largeur de l'écran pour un impact maximal */
-            max-width: 1000px; /* Mais pas plus de 1000px pour ne pas pixelliser */
-            height: auto; /* Garde les proportions */
-            margin-bottom: 0; /* Enlève la marge pour centrer parfaitement */
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); /* Ombre plus forte pour l'impact */
+        /* Style spécifique pour le logo sur la slide finale (GIGANTESQUE) */
+        .custom-logo-outro {
+            width: 90vw; /* Utilise 90% de la largeur de l'écran pour un impact ÉNORME */
+            max-width: 1200px; /* Limite à 1200px pour les très grands écrans */
+            height: auto; 
+            margin-bottom: 0; 
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); /* Ombre très marquée */
         }
 
-        /* Style spécifique pour le logo sur les slides de contenu (taille précédente) */
+        /* Style spécifique pour le logo sur la slide d'intro */
         .hero-logo { width: 500px; max-width: 80%; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); }
 
     </style>
@@ -189,7 +189,9 @@
     </header>
 
     <div class="nav-dots">
-        <div class="dot dot-active"></div> <div class="dot"></div>
+        <div class="dot dot-active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
@@ -197,10 +199,6 @@
         <div class="dot"></div> </div>
 
     <div class="slides-container" id="container">
-
-        <section class="slide slide-intro">
-            <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo custom-logo-intro">
-        </section>
 
         <section class="slide">
             <img src="logo-myboat.png.png" alt="Logo MyBoat" class="hero-logo" style="animation: fadeInUp 0.8s ease-out;">
@@ -223,7 +221,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-water"></i>
                         <h4>Liberté Absolue</h4>
-                        <p>Plus de mails, plus de notifications, plus de KPIs. Juste vous, l'horizon, et cette sensation physique, presque animale, de liberté.</p>
+                        <p>Plus de mails, plus de notifications. Juste vous, l'horizon, et cette sensation physique, presque animale, de liberté.</p>
                     </div>
                     <div class="icon-box">
                         <i class="fa-regular fa-star"></i>
@@ -325,11 +323,16 @@
             <a href="#" class="btn-gold">Rencontrons-nous sur le stand</a>
         </section>
 
+        <section class="slide slide-outro">
+            <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo custom-logo-outro">
+        </section>
+
     </div>
 
     <script>
         const container = document.getElementById('container');
         const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.slide');
 
         container.addEventListener('scroll', () => {
             let index = Math.round(container.scrollTop / window.innerHeight);
