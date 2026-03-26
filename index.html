@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBoat - L'Excellence Navale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -24,11 +24,11 @@
             background-color: var(--navy-dark);
             color: var(--white);
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; 
             scroll-behavior: smooth;
         }
 
-        /* Arrière-plan animé luxueux */
+        /* Arrière-plan animé luxueux (imite l'eau et la lumière) */
         .ambient-background {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -72,6 +72,7 @@
             scroll-snap-type: y mandatory;
         }
 
+        /* Structure de base d'une slide */
         .slide {
             height: 100vh;
             width: 100vw;
@@ -83,6 +84,12 @@
             position: relative;
             padding: 0 10%;
             box-sizing: border-box;
+        }
+
+        /* --- Style pour la nouvelle slide d'intro --- */
+        .slide-intro {
+            justify-content: center; /* Centre verticalement */
+            align-items: center; /* Centre horizontalement */
         }
 
         /* Effet Verre Dépoli (Glassmorphism) */
@@ -99,7 +106,7 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        /* Typographie Vendeuse */
+        /* Typographie Vendeuse et Luxueuse */
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0; }
         .title-massive { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; }
         .title-section { font-size: 3.5rem; color: var(--gold-light); margin-bottom: 20px; text-align: center; }
@@ -114,7 +121,7 @@
         .icon-box h4 { font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 15px; color: var(--white); text-transform: uppercase; }
         .icon-box p { font-weight: 300; line-height: 1.7; color: #CCC; font-size: 0.95rem; }
 
-        /* Slide asymétrique */
+        /* Slide "Artisanat" asymétrique façon magazine de luxe */
         .editorial-layout { display: flex; align-items: center; gap: 60px; }
         .editorial-left { flex: 1; border-left: 4px solid var(--gold); padding-left: 40px; }
         .editorial-right { flex: 1; display: flex; flex-direction: column; gap: 30px; }
@@ -123,7 +130,7 @@
         .feature-text h4 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--gold-light); }
         .feature-text p { margin: 0; font-weight: 300; font-size: 0.9rem; color: #BBB; line-height: 1.6; }
 
-        /* Bouton Vendeur */
+        /* Le Bouton Vendeur */
         .btn-gold {
             display: inline-block;
             background: linear-gradient(135deg, #C5A059 0%, #E8D099 50%, #C5A059 100%);
@@ -146,13 +153,29 @@
         /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Navigation latérale */
+        /* Navigation latérale chic */
         .nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; z-index: 100; }
         .dot { width: 8px; height: 8px; background: transparent; border: 1px solid var(--gold); border-radius: 50%; transition: 0.3s; }
         .dot-active { background: var(--gold); box-shadow: 0 0 10px var(--gold); transform: scale(1.3); }
 
-        /* Main Logo Showcase */
+        /* Style générique pour le logo, pour l'utiliser sur toutes les slides */
+        .custom-logo {
+            filter: drop-shadow(0px 6px 15px rgba(0,0,0,0.5));
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Style spécifique pour le logo sur la slide d'intro (GIGANTESQUE) */
+        .custom-logo-intro {
+            width: 80vw; /* Utilise 80% de la largeur de l'écran pour un impact maximal */
+            max-width: 1000px; /* Mais pas plus de 1000px pour ne pas pixelliser */
+            height: auto; /* Garde les proportions */
+            margin-bottom: 0; /* Enlève la marge pour centrer parfaitement */
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7)); /* Ombre plus forte pour l'impact */
+        }
+
+        /* Style spécifique pour le logo sur les slides de contenu (taille précédente) */
         .hero-logo { width: 500px; max-width: 80%; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); }
+
     </style>
 </head>
 <body>
@@ -166,10 +189,18 @@
     </header>
 
     <div class="nav-dots">
-        <div class="dot dot-active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-    </div>
+        <div class="dot dot-active"></div> <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div> </div>
 
     <div class="slides-container" id="container">
+
+        <section class="slide slide-intro">
+            <img src="logo-myboat.png.png" alt="Logo MyBoat" class="custom-logo custom-logo-intro">
+        </section>
 
         <section class="slide">
             <img src="logo-myboat.png.png" alt="Logo MyBoat" class="hero-logo" style="animation: fadeInUp 0.8s ease-out;">
@@ -192,7 +223,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-water"></i>
                         <h4>Liberté Absolue</h4>
-                        <p>Plus de mails, plus de notifications. Juste vous, l'horizon, et cette sensation physique, presque animale, de liberté.</p>
+                        <p>Plus de mails, plus de notifications, plus de KPIs. Juste vous, l'horizon, et cette sensation physique, presque animale, de liberté.</p>
                     </div>
                     <div class="icon-box">
                         <i class="fa-regular fa-star"></i>
@@ -299,7 +330,6 @@
     <script>
         const container = document.getElementById('container');
         const dots = document.querySelectorAll('.dot');
-        const slides = document.querySelectorAll('.slide');
 
         container.addEventListener('scroll', () => {
             let index = Math.round(container.scrollTop / window.innerHeight);
